@@ -1,0 +1,17 @@
+{ "name": "valvestream"
+, "description": "control data flow of a stream at a single point"
+, "version": "0.0.1"
+, "homepage": "https://github.com/dodo/node-valvestream"
+, "author": "dodo (https://github.com/dodo)"
+, "repository": {"type": "git", "url": "git://github.com/dodo/node-valvestream.git"}
+, "main": "valvestream.js"
+, "engines": {"node": ">= 0.4.x"}
+, "keywords": ["stream", "streams", "valve", "single", "point", "control"]
+, "scripts": {
+    "preinstall": "#preinstall DO NOTHING",
+    "install": "node-waf configure build",
+    "update": "node-waf build"}
+, "dependencies": {
+    "weak": ">= 0.1.1",
+    "coffee-script": ">= 1.1.2"}
+}
