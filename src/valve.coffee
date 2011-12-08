@@ -184,7 +184,7 @@ class Valve extends Steam
         sink.on 'drain', ondrain
 
         # remove all the event listeners that were added.
-        cleanup ->
+        cleanup  = ->
             sink.removeListener 'drain', ondrain
 
             source.removeListener 'end', onend
