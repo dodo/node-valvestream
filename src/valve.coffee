@@ -24,7 +24,7 @@ class Valve extends Steam
         if typeof opts is 'string'
             opts = encoding:opts
         # values
-        @useweak = opts.weak
+        @useweak = opts.weak ? off
         @sources = []
         @sinks = []
         # defaults
