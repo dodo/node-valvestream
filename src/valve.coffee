@@ -180,7 +180,8 @@ class Valve extends Steam
             source.on 'close', onclose
             source.on 'end', onend
 
-        sink.on 'drain', -> do source.resume
+        ondrain = -> do source.resume
+        sink.on 'drain', ondrain
 
         # remove all the event listeners that were added.
         cleanup ->
