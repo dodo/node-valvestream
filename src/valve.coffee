@@ -110,9 +110,10 @@ class Valve extends Steam
     # Terminates the stream with EOF or FIN. This call will allow queued write
     # data to be sent before closing the stream.
     end: (data, encoding) ->
+        return if @finished
+        @finished = yes # we give write the change to eg clear the buffer
         @write(data, encoding) if data?
         @writable = off
-        @finished = yes
         unless @paused
             @emit 'end'
             @emit 'close'
