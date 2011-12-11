@@ -41,7 +41,7 @@ class Valve extends Steam
             do source.pause if @paused
             @writable = on
             if @useweak
-                weak_reference @sources, source
+                weakreference @sources, source
             else
                 @sources.push source
         # init
@@ -148,7 +148,7 @@ class Valve extends Steam
         source = this
         @writable = on
         if @useweak
-            weak_reference @sinks, sink
+            weakreference @sinks, sink
         else
             @sinks.push sink
 
