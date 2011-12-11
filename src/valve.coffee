@@ -32,7 +32,7 @@ class Valve extends Steam
         # states
         @finished = off
         @paused   = off
-        @writable = on
+        @writable = off
         @readable = on
         @jammed = 0
         # listen for sources
