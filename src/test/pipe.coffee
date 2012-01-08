@@ -2,7 +2,7 @@ Valve = require '../'
 
 module.exports =
 
-    pipe: (æ) ->
+    simple: (æ) ->
         writable = new Valve
         readable = new Valve
         passed = no
@@ -18,7 +18,7 @@ module.exports =
         readable.pipe writable
         readable.end()
 
-    'pipe multi': (æ) ->
+    multi: (æ) ->
 
         count = nr = 10
         chunkSize  = 250
