@@ -20,13 +20,17 @@ module.exports =
 
     'pipe multi': (æ) ->
 
-        count = nr = 100
+        count = nr = 10
         chunkSize  = 250
         chunkCount = 1000
 
         closed_readables = 0
         closed_writables = 0
         [writables, readables] = [[], []]
+
+        check_done = ->
+            if closed_readables is nr and closed_writables is nr
+                æ.done()
 
         for i in [0 ... chunkSize]
             chunkSize[i] = i % 256
@@ -37,6 +41,7 @@ module.exports =
             readable.on 'close', ->
 #                 console.error "#{@ID} read close"
                 closed_readables++
+                do check_done
             readables.push readable
 
             writable = new Valve
@@ -49,6 +54,7 @@ module.exports =
 #                 console.error "#{@ID} write close"
                 æ.equal @_got_data, chunkCount
                 closed_writables++
+                do check_done
             writables.push writable
 
             readable.ID = writable.ID = i
@@ -66,6 +72,6 @@ module.exports =
                     if --count is 0
                         æ.equal closed_readables, nr
                         æ.equal closed_writables, nr
-                        æ.done()
-                process.nextTick(step) unless readable.paused
+                unless readable.paused or readable.finished
+                    process.nextTick(step)
             process.nextTick(step)
