@@ -84,14 +84,15 @@ class Valve extends Steam
     # will be sent out in the future.
     # The 'drain' event will indicate when the kernel buffer is empty again.
     # The encoding defaults to 'utf8'.
-    flush: ->
+    flush: (data) ->
         # we can only write again if all full sinks drained
         return false if @paused or @jammed isnt 0
         # we are only as fast as the slowest sink
         for sink in @sinks
             continue unless sink.writable
-            wantsmore = sink.write(arguments...)
+            wantsmore = sink.write(data)
             @jammed++ unless wantsmore
+        @emit 'data', data
          # only true if all sinks were writable and returned true
         return @jammed is 0
 
