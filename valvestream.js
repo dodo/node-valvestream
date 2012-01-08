@@ -1,2 +1,2 @@
 
-module.exports = require('./build/default/valve')
+module.exports = require('./lib/valve')

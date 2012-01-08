@@ -8,10 +8,10 @@
 , "engines": {"node": ">= 0.4.x"}
 , "keywords": ["stream", "streams", "valve", "single", "point", "control"]
 , "scripts": {
-    "preinstall": "#preinstall DO NOTHING",
-    "install": "node-waf configure build",
-    "update": "node-waf build"}
+    "prepublish": "cake build"}
 , "dependencies": {
-    "weak": ">= 0.1.1",
+    "weak": ">= 0.1.1"}
+, "devDependencies": {
+    "muffin": ">= 0.2.6",
     "coffee-script": ">= 1.1.2"}
 }
