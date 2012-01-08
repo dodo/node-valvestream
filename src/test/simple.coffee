@@ -60,8 +60,7 @@ module.exports =
             readable.on 'resume', ->
                 do step
             step = ->
-                readable.flush data
-#                 readable.emit 'data', data FIXME this should work
+                readable.emit 'data', data if cnt > 0
                 if --cnt is 0
                     readable.end()
                     if --count is 0

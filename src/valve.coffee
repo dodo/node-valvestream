@@ -47,6 +47,10 @@ class Valve extends Steam
         # init
         super
 
+    emit: (event, data) ->
+        return super unless event is 'data'
+        @flush data
+
     ##
     # Pauses the incoming 'data' events.
     pause: () ->
@@ -92,7 +96,7 @@ class Valve extends Steam
             continue unless sink.writable
             wantsmore = sink.write(data)
             @jammed++ unless wantsmore
-        @emit 'data', data
+        Valve.__super__.emit.call this, 'data', data
          # only true if all sinks were writable and returned true
         return @jammed is 0
 
