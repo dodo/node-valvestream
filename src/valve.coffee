@@ -98,7 +98,10 @@ class Valve extends Steam
             @jammed++ if wantsmore is no
         Valve.__super__.emit.call this, 'data', data
          # only true if all sinks were writable and returned true
-        return @jammed is 0
+        clear = @jammed is 0
+        # if min one sink is draining we have to pause all sources
+        do @pause if not clear
+        clear # out
 
     ##
     # this method is made simple so this can be overridden to implement some
