@@ -63,8 +63,8 @@ class Valve extends Steam
     ##
     # Resumes the incoming 'data' events after a pause().
     resume: () ->
-        return if not @paused or @jammed is 0
-        @jammed--
+        return if not @paused
+        @jammed--  if @jammed > 0
         return unless @jammed is 0
         @emit 'drain'
         @paused = no
