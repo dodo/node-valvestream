@@ -24,17 +24,17 @@ class Valve extends Steam
         if typeof opts is 'string'
             opts = encoding:opts
         # values
-        @useweak = opts.weak ? off
-        @sources = []
-        @sinks = []
+        @useweak  = opts.weak ? off
+        @sources ?= []
+        @sinks   ?= []
         # defaults
         @setEncoding(opts.encoding ? 'utf8')
         # states
-        @finished = off
-        @paused   = off
-        @writable = off
-        @readable = on
-        @jammed = 0
+        @finished ?= off
+        @paused   ?= off
+        @writable ?= off
+        @readable ?= on
+        @jammed   ?= 0
         # listen for sources
         @on 'pipe', (source) ->
             source.setEncoding @encoding if @encoding?
