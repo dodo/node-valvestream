@@ -95,7 +95,7 @@ class Valve extends Steam
         for sink in @sinks
             continue unless sink.writable
             wantsmore = sink.write(data)
-            @jammed++ unless wantsmore
+            @jammed++ if wantsmore is no
         Valve.__super__.emit.call this, 'data', data
          # only true if all sinks were writable and returned true
         return @jammed is 0
