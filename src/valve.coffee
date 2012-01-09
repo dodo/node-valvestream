@@ -37,7 +37,7 @@ class Valve extends Steam
         @jammed   ?= 0
         # listen for sources
         @on 'pipe', (source) ->
-            source.setEncoding @encoding if @encoding?
+            source.setEncoding?(@encoding) if @encoding?
             do source.pause if @paused
             @writable = on
             if @useweak
@@ -79,7 +79,7 @@ class Valve extends Steam
     # Makes the data event emit a string instead of a Buffer.
     # encoding can be 'utf8', 'ascii', or 'base64'.
     setEncoding: (@encoding) ->
-        source.setEncoding @encoding for source in @sources
+        source.setEncoding?(@encoding) for source in @sources
         return @encoding
 
     ##
