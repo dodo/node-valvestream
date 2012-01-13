@@ -10,8 +10,6 @@
 , "scripts": {
     "test": "cake build && nodeunit test",
     "prepublish": "cake build"}
-, "dependencies": {
-    "weak": ">= 0.1.1"}
 , "devDependencies": {
     "nodeunit": ">= 0.5.4",
     "muffin": ">= 0.2.6",
