@@ -1,6 +1,6 @@
 { "name": "valvestream"
 , "description": "control data flow of a stream at a single point"
-, "version": "0.0.0"
+, "version": "0.0.1"
 , "homepage": "https://github.com/dodo/node-valvestream"
 , "author": "dodo (https://github.com/dodo)"
 , "repository": {"type": "git", "url": "git://github.com/dodo/node-valvestream.git"}
