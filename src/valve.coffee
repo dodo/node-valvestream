@@ -28,7 +28,7 @@ class Valve extends Steam
         @sources ?= []
         @sinks   ?= []
         # defaults
-        @setEncoding(opts.encoding ? 'utf8')
+        @setEncoding(opts.encoding ? null)
         # states
         @finished ?= off
         @paused   ?= off
