@@ -49,7 +49,7 @@ class Valve extends Steam
 
     emit: (event, data) ->
         return super unless event is 'data'
-        @flush data
+        @flush data, @encoding
 
     ##
     # Pauses the incoming 'data' events.
@@ -87,14 +87,14 @@ class Valve extends Steam
     # Returns false to indicate that the kernel buffer is full, and the data
     # will be sent out in the future.
     # The 'drain' event will indicate when the kernel buffer is empty again.
-    # The encoding defaults to 'utf8'.
-    flush: (data) ->
+    # The encoding defaults to null.
+    flush: (data, encoding) ->
         # we can only write again if all full sinks drained
         return false if @paused or @jammed isnt 0
         # we are only as fast as the slowest sink
         for sink in @sinks
             continue unless sink.writable
-            wantsmore = sink.write(data)
+            wantsmore = sink.write(data, encoding)
             @jammed++ if wantsmore is no
         Valve.__super__.emit.call this, 'data', data
          # only true if all sinks were writable and returned true
